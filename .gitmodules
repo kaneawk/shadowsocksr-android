@@ -21,7 +21,13 @@
 	path = src/main/jni/pdnsd
 	url = https://github.com/shadowsocks/pdnsd.git
 	branch = shadowsocks-android
-[submodule "shadowsocks-libev"]
-	path = shadowsocks-libev
+[submodule "src/main/jni/shadowsocks-libev"]
+	path = src/main/jni/shadowsocks-libev
 	url = git@github.com:glzjin/shadowsocks-libev.git
 	branch = master
+[submodule "kcptun/kcptun"]
+	path = kcptun/kcptun
+	url = https://github.com/shadowsocks/kcptun
+[submodule "kcptun/go"]
+	path = kcptun/go
+	url = https://github.com/shadowsocks/go
