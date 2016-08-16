@@ -104,6 +104,10 @@ class ShadowsocksNatService extends BaseService {
           , "-P", getApplicationInfo.dataDir
           , "-c" , getApplicationInfo.dataDir + "/ss-local-nat.conf")
 
+    if (profile.auth) cmd += "-A"
+
+    if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
+
     if (profile.route != Route.ALL) {
       cmd += "--acl"
       cmd += (getApplicationInfo.dataDir + "/acl.list")
@@ -145,6 +149,8 @@ class ShadowsocksNatService extends BaseService {
         , "-P" , getApplicationInfo.dataDir
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
+
+      if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
 
       if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
