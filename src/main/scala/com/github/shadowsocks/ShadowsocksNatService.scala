@@ -150,8 +150,6 @@ class ShadowsocksNatService extends BaseService {
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
 
-      if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
-
       if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
       sstunnelProcess = new GuardedProcess(cmd).start()

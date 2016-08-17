@@ -235,8 +235,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       , "-c", getApplicationInfo.dataDir + "/ss-local-udp-vpn.conf")
 
 
-    if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
-
     if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
     sstunnelProcess = new GuardedProcess(cmd).start()
@@ -283,6 +281,8 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       cmd += (getApplicationInfo.dataDir + "/acl.list")
     }
 
+    if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
+
     if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
     sslocalProcess = new GuardedProcess(cmd).start()
@@ -310,8 +310,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       , "-P", getApplicationInfo.dataDir
       , "-c", getApplicationInfo.dataDir + "/ss-tunnel-vpn.conf")
 
-
-    if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
 
     if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
