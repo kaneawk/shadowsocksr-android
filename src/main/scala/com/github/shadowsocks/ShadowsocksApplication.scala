@@ -46,7 +46,7 @@ import android.app.Application
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
 import com.github.shadowsocks.database.{DBHelper, ProfileManager}
-import com.github.shadowsocks.utils.{Key, Utils}
+import com.github.shadowsocks.utils.{Key, Utils, TcpFastOpen}
 import com.google.android.gms.analytics.{GoogleAnalytics, HitBuilders, StandardExceptionParser}
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.tagmanager.{ContainerHolder, TagManager}
@@ -111,6 +111,8 @@ class ShadowsocksApplication extends Application {
       }
     }
     pending.setResultCallback(callback, 2, TimeUnit.SECONDS)
+
+    TcpFastOpen.enabled(settings.getBoolean(Key.tfo, false))
   }
 
   def refreshContainerHolder {
