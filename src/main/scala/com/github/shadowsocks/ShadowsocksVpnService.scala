@@ -260,7 +260,10 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     if (profile.route != Route.ALL) {
       cmd += "--acl"
-      cmd += (getApplicationInfo.dataDir + "/acl.list")
+      if (profile.route == Route.GFWLIST)
+        cmd += (getApplicationInfo.dataDir + "/gfwlist.acl")
+      else
+        cmd += (getApplicationInfo.dataDir + "/acl.list")
     }
 
     if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
@@ -299,11 +302,12 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
   def startDnsDaemon() {
     val ipv6 = if (profile.ipv6) "" else "reject = ::/0;"
-    val conf = {
-      if (profile.route == Route.BYPASS_CHN || profile.route == Route.BYPASS_LAN_CHN) {
+    val conf = profile.route match {
+      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST => {
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, getApplicationInfo.dataDir,
           "0.0.0.0", profile.localPort + 53, getBlackList, profile.localPort + 63, ipv6)
-      } else {
+      }
+      case _ => {
         ConfigUtils.PDNSD_LOCAL.formatLocal(Locale.ENGLISH, getApplicationInfo.dataDir,
           "0.0.0.0", profile.localPort + 53, profile.localPort + 63, ipv6)
       }
