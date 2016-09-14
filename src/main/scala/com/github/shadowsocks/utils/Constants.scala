@@ -177,6 +177,7 @@ object Key {
   val kcpcli = "kcpcli"
 
   val tfo = "tcp_fastopen"
+  val currentVersionCode = "currentVersionCode"
 }
 
 object State {
