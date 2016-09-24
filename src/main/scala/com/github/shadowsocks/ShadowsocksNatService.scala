@@ -137,8 +137,8 @@ class ShadowsocksNatService extends BaseService {
   def startDNSTunnel() {
     if (profile.udpdns) {
       val conf = ConfigUtils
-        .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 53,
-          profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param)
+      .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 53,
+        profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param)
       Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-tunnel-nat.conf"))(p => {
         p.println(conf)
       })
@@ -146,8 +146,8 @@ class ShadowsocksNatService extends BaseService {
         , "-u"
         , "-t" , "10"
         , "-b" , "127.0.0.1"
-        , "-L" , profile.dns
         , "-l" , (profile.localPort + 53).toString
+        , "-L" , profile.dns
         , "-P" , getApplicationInfo.dataDir
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
@@ -189,7 +189,7 @@ class ShadowsocksNatService extends BaseService {
     val conf = profile.route match {
       case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN => {
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, getApplicationInfo.dataDir,
-          "127.0.0.1", profile.localPort + 53, getBlackList, "", profile.localPort + 63, "")
+          "127.0.0.1", profile.localPort + 53, "", profile.localPort + 63, "")
       }
       case Route.GFWLIST => {
         ConfigUtils.PDNSD_UDP.formatLocal(Locale.ENGLISH, getApplicationInfo.dataDir,
