@@ -362,7 +362,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       })
     }
 
-    builder.addRoute("8.8.0.0", 16)
+    builder.addRoute(profile.dns.split(":")(0), 32)
 
     try {
       conn = builder.establish()
