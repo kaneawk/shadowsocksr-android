@@ -225,20 +225,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
   }
 
   def startShadowsocksDaemon() {
-    if (profile.route != Route.ALL && profile.route != Route.GFWLIST) {
-      val acl: Array[String] = profile.route match {
-        case Route.BYPASS_LAN => getResources.getStringArray(R.array.private_route)
-        case Route.BYPASS_CHN => getResources.getStringArray(R.array.chn_route)
-        case Route.BYPASS_LAN_CHN =>
-          getResources.getStringArray(R.array.private_route) ++ getResources.getStringArray(R.array.chn_route)
-        case Route.CHINALIST =>
-          Array("[bypass_all]", "[white_list]") ++ getResources.getStringArray(R.array.chn_route)
-      }
-      Utils.printToFile(new File(getApplicationInfo.dataDir + "/acl.list"))(p => {
-        acl.foreach(p.println)
-      })
-    }
-
     val conf = if (profile.kcp) {
       ConfigUtils
       .SHADOWSOCKS.formatLocal(Locale.ENGLISH, "127.0.0.1", profile.localPort + 90, profile.localPort,
@@ -263,10 +249,13 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     if (profile.route != Route.ALL) {
       cmd += "--acl"
-      if (profile.route == Route.GFWLIST)
-        cmd += (getApplicationInfo.dataDir + "/gfwlist.acl")
-      else
-        cmd += (getApplicationInfo.dataDir + "/acl.list")
+      profile.route match {
+        case Route.BYPASS_LAN => cmd += (getApplicationInfo.dataDir + "/bypass_lan.acl")
+        case Route.BYPASS_CHN => cmd += (getApplicationInfo.dataDir + "/bypass_chn.acl")
+        case Route.BYPASS_LAN_CHN => cmd += (getApplicationInfo.dataDir + "/bypass_lan_chn.acl")
+        case Route.GFWLIST => cmd += (getApplicationInfo.dataDir + "/gfwlist.acl")
+        case Route.CHINALIST => cmd += (getApplicationInfo.dataDir + "/chinalist.acl")
+      }
     }
 
     if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
@@ -307,7 +296,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
   def startDnsDaemon() {
     val ipv6 = if (profile.ipv6) "" else "reject = ::/0;"
     val conf = ConfigUtils.PDNSD_LOCAL.formatLocal(Locale.ENGLISH, getApplicationInfo.dataDir,
-      "0.0.0.0", profile.localPort + 53, profile.localPort + 63, ipv6)
+      "0.0.0.0", profile.localPort + 53, profile.localPort + 63, ipv6, profile.protocol, profile.obfs, profile.obfs_param)
     Utils.printToFile(new File(getApplicationInfo.dataDir + "/pdnsd-vpn.conf"))(p => {
       p.println(conf)
     })
