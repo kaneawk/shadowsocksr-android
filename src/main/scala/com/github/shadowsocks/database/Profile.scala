@@ -64,7 +64,7 @@ class Profile {
 
   @DatabaseField
   var password: String = ""
-  
+
   @DatabaseField
   var protocol: String = "origin"
   
@@ -88,7 +88,7 @@ class Profile {
 
   @DatabaseField
   var udpdns: Boolean = false
-  
+
   @DatabaseField
   var dns: String = "8.8.8.8:53"
 
@@ -115,7 +115,7 @@ class Profile {
     password).getBytes, Base64.URL_SAFE | Base64.NO_WRAP), Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
     obfs_param).getBytes, Base64.URL_SAFE | Base64.NO_WRAP), Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
     name).getBytes, Base64.URL_SAFE | Base64.NO_WRAP)).getBytes, Base64.URL_SAFE | Base64.NO_WRAP)
-  
+
   @DatabaseField
   var kcp: Boolean = false
 
