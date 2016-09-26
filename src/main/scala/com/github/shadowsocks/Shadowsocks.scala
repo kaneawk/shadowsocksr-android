@@ -66,7 +66,6 @@ import com.github.shadowsocks.utils.CloseUtils._
 import com.github.shadowsocks.utils._
 import eu.chainfire.libsuperuser.Shell
 
-
 import scala.collection.mutable.ArrayBuffer
 
 object Typefaces {
@@ -199,7 +198,6 @@ class Shadowsocks extends AppCompatActivity with ServiceBoundContext {
     if (fab != null) fab.setEnabled(false)
   }
 
-
   override def binderDied {
     detachService
     crashRecovery
@@ -213,10 +211,8 @@ class Shadowsocks extends AppCompatActivity with ServiceBoundContext {
   private var rxText: TextView = _
   private var txRateText: TextView = _
   private var rxRateText: TextView = _
-
   private lazy val greyTint = ContextCompat.getColorStateList(this, R.color.material_blue_grey_700)
   private lazy val greenTint = ContextCompat.getColorStateList(this, R.color.material_green_700)
-  //private var adView: AdView = _
   private lazy val preferences =
     getFragmentManager.findFragmentById(android.R.id.content).asInstanceOf[ShadowsocksSettings]
 

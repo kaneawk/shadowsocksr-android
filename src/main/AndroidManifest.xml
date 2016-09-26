@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="com.github.shadowsocks"
-<<<<<<< HEAD
           android:versionCode="159"
           android:versionName="3.1.6">
 
@@ -36,11 +35,7 @@
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version"/>
         <meta-data android:name="com.google.android.backup.api_key"
-                   android:value="AEdPqrEAAAAIPs-N3mj5f0FhZ99WjwOUoCXeCuQWToee2uvMAw"/>
-
-        <!--<activity-->
-                <!--android:name="com.google.android.gms.ads.AdActivity"-->
-                <!--android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>-->
+                   android:value="AEdPqrEAAAAI_zVxZthz2HDuz9toTvkYvL0L5GA-OjeUIfBeXg"/>
 
         <activity
                 android:name=".Shadowsocks"
