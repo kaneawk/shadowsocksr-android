@@ -136,10 +136,14 @@ class ShadowsocksNatService extends BaseService {
         , "-t" , "10"
         , "-b" , "127.0.0.1"
         , "-l" , (profile.localPort + 53).toString
-        , "-L" , profile.dns
         , "-P" , getApplicationInfo.dataDir
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
+      cmd += "-L"
+      if (profile.route == Route.CHINALIST)
+        cmd += "114.114.114.114:53"
+      else
+        cmd += profile.dns
 
       if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
