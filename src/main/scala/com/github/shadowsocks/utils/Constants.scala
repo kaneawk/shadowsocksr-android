@@ -192,9 +192,9 @@ object State {
 }
 
 object Action {
-  val SERVICE = "com.github.shadowsocks.ssr.SERVICE"
-  val CLOSE = "com.github.shadowsocks.ssr.CLOSE"
-  val QUICK_SWITCH = "com.github.shadowsocks.ssr.QUICK_SWITCH"
+  val SERVICE = "net.htcp.shadowsocksr.SERVICE"
+  val CLOSE = "net.htcp.shadowsocksr.CLOSE"
+  val QUICK_SWITCH = "net.htcp.shadowsocksr.QUICK_SWITCH"
 }
 
 object Route {
