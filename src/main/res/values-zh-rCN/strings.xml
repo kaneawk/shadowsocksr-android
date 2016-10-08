@@ -13,9 +13,7 @@
   <string name="port">本地端口</string>
   <string name="sitekey">密码</string>
   <string name="protocol">协议</string>
-  <string name="protocol_summary">您的自定义协议（SSR 特性）</string>
   <string name="obfs">混淆方式</string>
-  <string name="obfs_summary">您的自定义混淆方式（SSR 特性）</string>
   <string name="obfs_param">混淆参数</string>
   <string name="obfs_param_summary">您的自定义混淆参数（SSR 特性）</string>
   <string name="enc_method">加密方法</string>
