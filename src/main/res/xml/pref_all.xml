@@ -42,14 +42,14 @@
                 android:entryValues="@array/enc_method_value"
                 android:summary="%s"
                 android:title="@string/enc_method"/>
-        <android.support.v7.preference.DropDownPreference
+        <DropDownPreference
                 android:key="protocol"
                 android:persistent="false"
                 android:entries="@array/protocol_entry"
                 android:entryValues="@array/protocol_value"
                 android:summary="%s"
                 android:title="@string/protocol"/>
-        <android.support.v7.preference.DropDownPreference
+        <DropDownPreference
                 android:key="obfs"
                 android:persistent="false"
                 android:entries="@array/obfs_entry"
