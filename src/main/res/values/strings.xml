@@ -73,8 +73,10 @@
   <string name="tcp_fastopen_summary_unsupported">Unsupported kernel version: %s &lt; 3.7.1</string>
   <string name="udp_dns">UDP Forwarding</string>
   <string name="udp_dns_summary">Forward UDP packets to remote</string>
-  <string name="dns">DNS</string>
-  <string name="dns_summary">The dns server you want to use,e.g. 8.8.8.8:53</string>
+  <string name="dns">International DNS</string>
+  <string name="dns_summary">Use to resolve outside the mainland of China\'s domains,e.g. 8.8.8.8:53</string>
+  <string name="china_dns">China DNS</string>
+  <string name="china_dns_summary">Use to resolve China\'s domains,e.g. 223.5.5.5:53</string>
 
   <!-- notification category -->
   <string name="forward_success">Shadowsocks started.</string>

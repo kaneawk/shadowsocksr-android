@@ -90,6 +90,11 @@
                 android:summary="@string/udp_dns_summary"
                 android:title="@string/udp_dns"/>
         <be.mygod.preference.EditTextPreference
+                android:key="china_dns"
+                android:persistent="false"
+                android:summary="@string/china_dns_summary"
+                android:title="@string/china_dns"/>
+        <be.mygod.preference.EditTextPreference
                 android:key="dns"
                 android:persistent="false"
                 android:summary="@string/dns_summary"

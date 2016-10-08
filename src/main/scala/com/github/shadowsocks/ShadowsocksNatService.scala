@@ -141,9 +141,9 @@ class ShadowsocksNatService extends BaseService {
 
       cmd += "-L"
       if (profile.route == Route.CHINALIST)
-        cmd += "114.114.114.114:53"
+        cmd += profile.china_dns.split(",")(0)
       else
-        cmd += profile.dns
+        cmd += profile.dns.split(",")(0)
 
       if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
 
@@ -166,10 +166,14 @@ class ShadowsocksNatService extends BaseService {
         , "-t" , "10"
         , "-b" , "127.0.0.1"
         , "-l" , (profile.localPort + 63).toString
-        , "-L" , profile.dns
         , "-P", getApplicationInfo.dataDir
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
+      cmdBuf += "-L"
+      if (profile.route == Route.CHINALIST)
+        cmdBuf += profile.china_dns.split(",")(0)
+      else
+        cmdBuf += profile.dns.split(",")(0)
 
       if (BuildConfig.DEBUG) Log.d(TAG, cmdBuf.mkString(" "))
 
@@ -181,16 +185,30 @@ class ShadowsocksNatService extends BaseService {
 
     val reject = if (profile.ipv6) "224.0.0.0/3" else "224.0.0.0/3, ::/0"
 
+    var china_dns_settings = ""
+
+    val black_list = profile.route match {
+      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST => {
+        getBlackList
+      }
+      case _ => {
+        ""
+      }
+    }
+
+    for (china_dns <- profile.china_dns.split(",")) {
+      china_dns_settings += ConfigUtils.REMOTE_SERVER.formatLocal(Locale.ENGLISH, china_dns.split(":")(0), china_dns.split(":")(1).toInt,
+        black_list, reject)
+    }
+
     val conf = profile.route match {
       case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST => {
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "", getApplicationInfo.dataDir,
-          "127.0.0.1", profile.localPort + 53, "1.2.4.8, 114.114.114.114",
-          getBlackList, reject, profile.localPort + 63, reject)
+          "127.0.0.1", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
       }
       case Route.CHINALIST => {
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "", getApplicationInfo.dataDir,
-          "127.0.0.1", profile.localPort + 53, "8.8.8.8, 208.67.222.222",
-          "", reject, profile.localPort + 63, reject)
+          "127.0.0.1", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
       }
       case _ => {
         ConfigUtils.PDNSD_LOCAL.formatLocal(Locale.ENGLISH, "", getApplicationInfo.dataDir,
