@@ -353,7 +353,7 @@ class ShadowsocksNatService extends BaseService {
     handleConnection()
 
     // lazily get ACL from cloud
-    getAcl(profile.route)
+    fetchAcl(profile.route)
 
     changeState(State.CONNECTED)
     notification = new ShadowsocksNotification(this, profile.name, true)
