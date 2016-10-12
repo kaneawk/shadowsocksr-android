@@ -41,7 +41,7 @@ package com.github.shadowsocks
 import java.lang.System.currentTimeMillis
 import java.net.{HttpURLConnection, URL}
 import java.util
-import java.util.{Date, Locale}
+import java.util.{GregorianCalendar, Locale}
 
 import android.app.backup.BackupManager
 import android.app.{Activity, ProgressDialog}
