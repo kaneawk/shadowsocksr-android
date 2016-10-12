@@ -32,8 +32,6 @@ resolvers += Resolver.jcenterRepo
 
 useSupportVectors
 
-googleServicesSettings
-
 libraryDependencies ++= Seq(
   "com.android.support" % "design" % "24.2.1",
   "com.android.support" % "gridlayout-v7" % "24.2.1",
@@ -56,7 +54,6 @@ proguardVersion in Android := "5.3"
 proguardCache in Android := Seq()
 
 proguardOptions in Android ++= Seq(
-  "-keepattributes Signature",
   "-keep class com.github.shadowsocks.System { *; }",
   "-dontwarn com.google.android.gms.internal.**",
   "-dontwarn com.j256.ormlite.**",
