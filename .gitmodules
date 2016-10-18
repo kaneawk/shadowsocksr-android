@@ -30,3 +30,6 @@
 [submodule "src/main/jni/pcre"]
 	path = src/main/jni/pcre
 	url = https://android.googlesource.com/platform/external/pcre
+[submodule "src/main/jni/shadowsocks-libev"]
+	path = src/main/jni/shadowsocks-libev
+	url = https://github.com/kaneawk/shadowsocksr-libev.git

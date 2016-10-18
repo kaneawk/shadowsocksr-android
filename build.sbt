@@ -1,16 +1,13 @@
-name := "shadowsocksr"
-
-applicationId  := "net.htcp.shadowsocksr"
-
 scalaVersion := "2.11.8"
 dexMaxHeap := "4g"
 
 enablePlugins(AndroidApp)
 useSupportVectors
 
-name := "shadowsocks"
+name := "shadowsocksr"
 version := "3.2.6"
 versionCode := Some(166)
+applicationId  := "net.htcp.shadowsocksr"
 
 platformTarget := "android-24"
 
