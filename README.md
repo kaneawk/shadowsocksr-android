@@ -1,8 +1,6 @@
 ## Shadowsocks R for Android
 
-A [shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Android, written in Scala.
-
-<a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="48"></a>
+A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Android, written in Scala.
 
 ### CI STATUS
 
@@ -37,7 +35,8 @@ A [shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
 
 ## OPEN SOURCE LICENSES
 
-* shadowsocks-libev: [GPLv3](https://github.com/shadowsocks/shadowsocks-libev/blob/master/LICENSE)
+* shadowsocksr-libev: [GPLv3](https://github.com/breakwa11/shadowsocks-libev/blob/master/LICENSE)
+* shadowsocksr-obfsplugin: [MIT](https://github.com/breakwa11/obfsplugin/blob/master/LICENSE)
 * tun2socks: [BSD](https://github.com/shadowsocks/badvpn/blob/shadowsocks-android/COPYING)
 * redsocks: [APL 2.0](https://github.com/shadowsocks/redsocks/blob/master/README)
 * OpenSSL: [OpenSSL](https://github.com/shadowsocks/openssl-android/blob/master/NOTICE)
@@ -48,7 +47,7 @@ A [shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
 
 ### LICENSE
 
-Copyright (C) 2016 by Max Lv <<max.c.lv@gmail.com>>  
+Copyright (C) 2016 by Max Lv <<max.c.lv@gmail.com>>
 Copyright (C) 2016 by Mygod Studio <<contact-shadowsocks-android@mygod.be>>
 
 This program is free software: you can redistribute it and/or modify
