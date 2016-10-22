@@ -12,7 +12,7 @@ A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
 * SBT 0.13.0+
 * Go 1.4+
 * Android SDK
-  - Build Tools 24+ (as required by [`sbt-android`](https://github.com/scala-android/sbt-android))
+  - Build Tools 25+
   - Android Support Repository and Google Repository (see `build.sbt` for version)
 * Android NDK r12b+
 
