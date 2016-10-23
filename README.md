@@ -22,7 +22,6 @@ A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
 * Set environment variable `ANDROID_NDK_HOME` to `/path/to/android-ndk`
 * Set environment variable `GOROOT_BOOTSTRAP` to `/path/to/go`
 * Create your key following the instructions at https://developer.android.com/studio/publish/app-signing.html
-* Put your key in ~/.keystore
 * Create `local.properties` from `local.properties.example` with your own key information
 * Invoke the building like this
 
