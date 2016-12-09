@@ -36,9 +36,9 @@ object DBHelper {
   final val PROFILE = "profile.db"
   private var apps: mutable.Buffer[ApplicationInfo] = _
 
-  def isAllDigits(x: String) = !x.isEmpty && (x forall Character.isDigit)
+  def isAllDigits(x: String): Boolean = !x.isEmpty && (x forall Character.isDigit)
 
-  def updateProxiedApps(context: Context, old: String) = {
+  def updateProxiedApps(context: Context, old: String): String = {
     synchronized(if (apps == null) apps = context.getPackageManager.getInstalledApplications(0).asScala)
     val uidSet = old.split('|').filter(isAllDigits).map(_.toInt).toSet
     apps.filter(ai => uidSet.contains(ai.uid)).map(_.packageName).mkString("\n")
@@ -46,7 +46,7 @@ object DBHelper {
 }
 
 class DBHelper(val context: Context)
-  extends OrmLiteSqliteOpenHelper(context, DBHelper.PROFILE, null, 20) {
+  extends OrmLiteSqliteOpenHelper(context, DBHelper.PROFILE, null, 21) {
   import DBHelper._
 
   lazy val profileDao: Dao[Profile, Int] = getDao(classOf[Profile])
