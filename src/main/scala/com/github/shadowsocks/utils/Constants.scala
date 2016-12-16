@@ -184,7 +184,6 @@ object Action {
   final val CONNECTED = "net.htcp.shadowsocksr.CONNECTED"  // TODO
   final val PROFILE_CHANGED = "net.htcp.shadowsocksr.PROFILE_CHANGED"
   final val PROFILE_REMOVED = "net.htcp.shadowsocksr.PROFILE_REMOVED"
-  final val QUICK_SWITCH = "net.htcp.shadowsocksr.QUICK_SWITCH"
 
   final val EXTRA_PROFILE_ID = "net.htcp.shadowsocksr.EXTRA_PROFILE_ID"
 }
