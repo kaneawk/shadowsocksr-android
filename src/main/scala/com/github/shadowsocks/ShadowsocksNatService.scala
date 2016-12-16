@@ -108,7 +108,7 @@ class ShadowsocksNatService extends BaseService {
   def startDNSTunnel() {
     if (profile.udpdns) {
       val conf = ConfigUtils
-      .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 53,
+        .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 53,
         profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param)
       Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-tunnel-nat.conf"))(p => {
         p.println(conf)
