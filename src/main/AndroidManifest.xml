@@ -85,7 +85,7 @@
                 android:name=".ShadowsocksRunnerActivity"
                 android:theme="@android:style/Theme.Translucent.NoTitleBar"
                 android:excludeFromRecents="true"
-		android:taskAffinity=""
+		        android:taskAffinity=""
                 android:launchMode="singleTask"/>
 
         <activity
