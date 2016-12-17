@@ -160,11 +160,14 @@ object Key {
   val kcpPort = "kcpPort"
   val kcpcli = "kcpcli"
 
+
   val obfs = "obfs"
   val obfs_param = "obfs_param"
   val protocol = "protocol"
   val dns = "dns"
   val china_dns = "china_dns"
+
+  val dirty = "profileDirty"
 
   val tfo = "tcp_fastopen"
   val currentVersionCode = "currentVersionCode"
