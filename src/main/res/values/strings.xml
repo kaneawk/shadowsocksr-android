@@ -12,7 +12,7 @@
   <string name="nat_summary">Use NAT mode instead of VPN mode. Requires ROOT permission.</string>
   <string name="stat">Network Traffic</string>
   <string name="stat_summary">Sent: \t\t\t\t\t%3$s\t↑\t%1$s/s\nReceived: \t%4$s\t↓\t%2$s/s</string>
-  <string name="stat_profiles">\n%1$s↑\t%2$s↓</string>
+  <string name="stat_profiles">%1$s↑\t%2$s↓</string>
   <string name="traffic_summary">%1$s/s↑\t%2$s/s↓</string>
   <plurals name="bytes" translatable="false">
     <item quantity="one">Byte</item>
