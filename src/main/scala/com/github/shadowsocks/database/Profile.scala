@@ -112,6 +112,10 @@ class Profile {
   @DatabaseField
   var kcpcli: String = "--crypt none --mode normal --mtu 1200 --nocomp --dscp 46 --parityshard 0"
 
+  def formattedAddress: String = (if (host.contains(":")) "[%s]:%d" else "%s:%d").format(host, remotePort)
+  def nameIsEmpty: Boolean = name == null || name.isEmpty
+  def getName: String = if (nameIsEmpty) formattedAddress else name
+
   def isMethodUnsafe: Boolean = "table".equalsIgnoreCase(method) || "rc4".equalsIgnoreCase(method)
 
   def serialize(editor: SharedPreferences.Editor): SharedPreferences.Editor = editor
