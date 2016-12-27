@@ -188,8 +188,6 @@ object State {
 object Action {
   final val SERVICE = "net.htcp.shadowsocksr.SERVICE"
   final val CLOSE = "net.htcp.shadowsocksr.CLOSE"
-  final val PROFILE_CHANGED = "net.htcp.shadowsocksr.PROFILE_CHANGED"
-  final val PROFILE_REMOVED = "net.htcp.shadowsocksr.PROFILE_REMOVED"
 
   final val EXTRA_PROFILE_ID = "net.htcp.shadowsocksr.EXTRA_PROFILE_ID"
 }
