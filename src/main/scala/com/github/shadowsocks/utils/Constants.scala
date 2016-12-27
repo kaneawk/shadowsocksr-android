@@ -174,17 +174,20 @@ object Key {
 }
 
 object State {
+  /**
+    * This state will never be broadcast by the service. This state is only used to indicate that the current context
+    * hasn't bound to any context.
+    */
+  val IDLE = 0
   val CONNECTING = 1
   val CONNECTED = 2
   val STOPPING = 3
   val STOPPED = 4
-  def isAvailable(state: Int): Boolean = state != CONNECTED && state != CONNECTING
 }
 
 object Action {
   final val SERVICE = "net.htcp.shadowsocksr.SERVICE"
   final val CLOSE = "net.htcp.shadowsocksr.CLOSE"
-  final val CONNECTED = "net.htcp.shadowsocksr.CONNECTED"  // TODO
   final val PROFILE_CHANGED = "net.htcp.shadowsocksr.PROFILE_CHANGED"
   final val PROFILE_REMOVED = "net.htcp.shadowsocksr.PROFILE_REMOVED"
 
