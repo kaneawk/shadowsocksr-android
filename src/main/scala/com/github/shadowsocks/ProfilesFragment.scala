@@ -38,10 +38,8 @@ import com.github.shadowsocks.ShadowsocksApplication.app
 import com.github.shadowsocks.database.Profile
 import com.github.shadowsocks.utils._
 import com.github.shadowsocks.widget.UndoSnackbarManager
-import com.google.android.gms.ads.{AdRequest, AdSize, NativeExpressAdView}
 
 import scala.collection.mutable.ArrayBuffer
-import scala.util.Random
 
 object ProfilesFragment {
   var instance: ProfilesFragment = _  // used for callback from ProfileManager and stateChanged from MainActivity
@@ -85,8 +83,6 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
     edit.setOnLongClickListener(cardButtonLongClickListener)
     itemView.setOnClickListener(this)
 
-    private var adView: NativeExpressAdView = _
-
     {
       val share = itemView.findViewById(R.id.share)
       share.setOnClickListener(_ => {
@@ -122,31 +118,6 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
         if (selectedItem eq this) selectedItem = null
       }
 
-      if (item.host == "198.199.101.152") {
-        if (adView == null) {
-          val params =
-            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-          params.gravity = Gravity.CENTER_HORIZONTAL
-          params.setMargins(0, Utils.dpToPx(getActivity, 8), 0, 0)
-          adView = new NativeExpressAdView(getActivity)
-          adView.setLayoutParams(params)
-          adView.setAdUnitId("ca-app-pub-9097031975646651/5224027521")
-          adView.setAdSize(new AdSize(328, 132))
-          itemView.findViewById(R.id.content).asInstanceOf[LinearLayout].addView(adView)
-
-          // Demographics
-          val random = new Random()
-          val adBuilder = new AdRequest.Builder()
-          adBuilder.setGender(AdRequest.GENDER_MALE)
-          val year = 1975 + random.nextInt(40)
-          val month = 1 + random.nextInt(12)
-          val day = random.nextInt(28)
-          adBuilder.setBirthday(new GregorianCalendar(year, month, day).getTime)
-
-          // Load Ad
-          adView.loadAd(adBuilder.build())
-        } else adView.setVisibility(View.VISIBLE)
-      } else if (adView != null) adView.setVisibility(View.GONE)
     }
 
     def onClick(v: View): Unit = if (isEnabled) {
