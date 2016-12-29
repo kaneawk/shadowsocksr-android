@@ -75,7 +75,7 @@
 
   <string name="udp_dns">UDP 轉送</string>
   <string name="udp_dns_summary">向遠端轉送 UDP 封包</string>
-  
+
   <string name="dns">國際 DNS</string>
   <string name="dns_summary">用於解析中國大陸以外域名的 DNS，如 8.8.8.8:53</string>
   <string name="china_dns">中國 DNS</string>
