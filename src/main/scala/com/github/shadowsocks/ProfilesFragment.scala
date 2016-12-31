@@ -299,7 +299,9 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
       true
     case R.id.action_import =>
       if (clipboard.hasPrimaryClip) {
-        val profiles = Parser.findAll(clipboard.getPrimaryClip.getItemAt(0).getText)
+        val profiles_normal = Parser.findAll(clipboard.getPrimaryClip.getItemAt(0).getText).toList
+	val profiles_ssr = Parser.findAll_ssr(clipboard.getPrimaryClip.getItemAt(0).getText).toList
+	val profiles = profiles_normal ::: profiles_ssr
         if (profiles.nonEmpty) {
           profiles.foreach(app.profileManager.createProfile)
           Toast.makeText(getActivity, R.string.action_import_msg, Toast.LENGTH_SHORT).show()

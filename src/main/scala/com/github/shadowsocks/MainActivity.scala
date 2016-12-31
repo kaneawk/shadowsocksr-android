@@ -330,7 +330,9 @@ class MainActivity extends Activity with ServiceBoundContext with Drawer.OnDrawe
       case _ => null
     }
     if (TextUtils.isEmpty(sharedStr)) return
-    val profiles = Parser.findAll(sharedStr).toList
+    val profiles_normal = Parser.findAll(sharedStr).toList
+    val profiles_ssr = Parser.findAll_ssr(sharedStr).toList
+    val profiles = profiles_ssr ::: profiles_normal
     if (profiles.isEmpty) {
       Snackbar.make(findViewById(R.id.snackbar), R.string.profile_invalid_input, Snackbar.LENGTH_LONG).show()
       return
