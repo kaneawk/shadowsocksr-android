@@ -281,7 +281,9 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
   override def onActivityResult(requestCode: Int, resultCode: Int, data: Intent): Unit = requestCode match {
     case REQUEST_SCAN_QR_CODE => if (resultCode == Activity.RESULT_OK) {
       val contents = data.getStringExtra("SCAN_RESULT")
-      if (!TextUtils.isEmpty(contents)) Parser.findAll(contents).foreach(app.profileManager.createProfile)
+      if (!TextUtils.isEmpty(contents)) 
+        Parser.findAll(contents).foreach(app.profileManager.createProfile)
+	Parser.findAll_ssr(contents).foreach(app.profileManager.createProfile)
     }
     case _ => super.onActivityResult(resultCode, resultCode, data)
   }
