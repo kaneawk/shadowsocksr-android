@@ -153,7 +153,7 @@ class Profile {
     method = pref.getString(Key.method, null)
     route = pref.getString(Key.route, null)
     dns = pref.getString(Key.dns, null)
-    dns = pref.getString(Key.china_dns, null)
+    china_dns = pref.getString(Key.china_dns, null)
     proxyApps = pref.getBoolean(Key.proxyApps, false)
     bypass = pref.getBoolean(Key.bypass, false)
     udpdns = pref.getBoolean(Key.udpdns, false)
