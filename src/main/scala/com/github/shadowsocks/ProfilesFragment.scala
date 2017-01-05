@@ -102,7 +102,7 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
       edit.setAlpha(if (editable) 1 else 0.5F)
       var tx = item.tx
       var rx = item.rx
-      if (item.id == app.profileId) {
+      if (item.id == bandwidthProfile) {
         tx += txTotal
         rx += rxTotal
       }
@@ -194,6 +194,10 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
 
     def refreshId(id: Int) {
       val index = profiles.indexWhere(_.id == id)
+      if (index >= 0) notifyItemChanged(index)
+    }
+    def deepRefreshId(id: Int) {
+      val index = profiles.indexWhere(_.id == id)
       if (index >= 0) {
         profiles(index) = app.profileManager.getProfile(id).get
         notifyItemChanged(index)
@@ -213,6 +217,7 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
 
   lazy val profilesAdapter = new ProfilesAdapter
   private var undoManager: UndoSnackbarManager[Profile] = _
+  private var bandwidthProfile: Int = _
   private var txTotal: Long = _
   private var rxTotal: Long = _
 
@@ -263,10 +268,24 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
     }).attachToRecyclerView(profilesList)
   }
 
-  override def onTrafficUpdated(txRate: Long, rxRate: Long, txTotal: Long, rxTotal: Long): Unit = {
-    this.txTotal = txTotal
-    this.rxTotal = rxTotal
-    profilesAdapter.refreshId(app.profileId)
+  override def onTrafficUpdated(profileId: Int, txRate: Long, rxRate: Long, txTotal: Long, rxTotal: Long): Unit =
+    if (profileId != -1) {  // ignore resets from MainActivity
+      if (bandwidthProfile != profileId) {
+        onTrafficPersisted(bandwidthProfile)
+        bandwidthProfile = profileId
+      }
+      this.txTotal = txTotal
+      this.rxTotal = rxTotal
+      profilesAdapter.refreshId(profileId)
+    }
+  def onTrafficPersisted(profileId: Int) {
+    txTotal = 0
+    rxTotal = 0
+    if (bandwidthProfile != profileId) {
+      onTrafficPersisted(bandwidthProfile)
+      bandwidthProfile = profileId
+    }
+    profilesAdapter.deepRefreshId(profileId)
   }
 
   override def onDetach() {
