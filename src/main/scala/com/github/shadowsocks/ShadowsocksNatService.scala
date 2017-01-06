@@ -28,8 +28,8 @@ import android.content._
 import android.os._
 import android.util.Log
 import com.github.shadowsocks.ShadowsocksApplication.app
+import com.github.shadowsocks.acl.{AclSyncJob, Acl}
 import com.github.shadowsocks.database.Profile
-import com.github.shadowsocks.job.AclSyncJob
 import com.github.shadowsocks.utils._
 import eu.chainfire.libsuperuser.Shell
 
@@ -75,9 +75,9 @@ class ShadowsocksNatService extends BaseService {
 
     if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
 
-    if (profile.route != Route.ALL) {
+    if (profile.route != Acl.ALL) {
       cmd += "--acl"
-      cmd += getApplicationInfo.dataDir + '/' + profile.route + ".acl"
+      cmd += Acl.getPath(profile.route)
     }
 
     if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
@@ -122,7 +122,7 @@ class ShadowsocksNatService extends BaseService {
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
       cmd += "-L"
-      if (profile.route == Route.CHINALIST)
+      if (profile.route == Acl.CHINALIST)
         cmd += profile.china_dns.split(",")(0)
       else
         cmd += profile.dns.split(",")(0)
@@ -152,7 +152,7 @@ class ShadowsocksNatService extends BaseService {
         , "-c" , getApplicationInfo.dataDir + "/ss-tunnel-nat.conf")
 
       cmdBuf += "-L"
-      if (profile.route == Route.CHINALIST)
+      if (profile.route == Acl.CHINALIST)
         cmdBuf += profile.china_dns.split(",")(0)
       else
         cmdBuf += profile.dns.split(",")(0)
@@ -170,7 +170,7 @@ class ShadowsocksNatService extends BaseService {
     var china_dns_settings = ""
 
     val black_list = profile.route match {
-      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST => {
+      case Acl.BYPASS_CHN | Acl.BYPASS_LAN_CHN | Acl.GFWLIST | Acl.CUSTOM_RULES => {
         getBlackList
       }
       case _ => {
@@ -184,10 +184,10 @@ class ShadowsocksNatService extends BaseService {
     }
 
     val conf = profile.route match {
-      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST =>
+      case Acl.BYPASS_CHN | Acl.BYPASS_LAN_CHN | Acl.GFWLIST | Acl.CUSTOM_RULES =>
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "", getApplicationInfo.dataDir,
           "127.0.0.1", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
-      case Route.CHINALIST =>
+      case Acl.CHINALIST =>
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "", getApplicationInfo.dataDir,
           "127.0.0.1", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
       case _ =>
@@ -324,7 +324,7 @@ class ShadowsocksNatService extends BaseService {
 
     handleConnection()
 
-    if (profile.route != Route.ALL)
+    if (profile.route != Acl.ALL)
       AclSyncJob.schedule(profile.route)
 
     changeState(State.CONNECTED)

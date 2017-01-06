@@ -30,8 +30,8 @@ import android.net.VpnService
 import android.os._
 import android.util.Log
 import com.github.shadowsocks.ShadowsocksApplication.app
+import com.github.shadowsocks.acl.{AclSyncJob, Acl}
 import com.github.shadowsocks.database.Profile
-import com.github.shadowsocks.job.AclSyncJob
 import com.github.shadowsocks.utils._
 
 import scala.collection.mutable.ArrayBuffer
@@ -145,7 +145,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
     handleConnection()
     changeState(State.CONNECTED)
 
-    if (profile.route != Route.ALL)
+    if (profile.route != Acl.ALL)
       AclSyncJob.schedule(profile.route)
 
     notification = new ShadowsocksNotification(this, profile.getName)
@@ -239,9 +239,9 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     if (profile.udpdns && !profile.kcp) cmd += "-u"
 
-    if (profile.route != Route.ALL) {
+    if (profile.route != Acl.ALL) {
       cmd += "--acl"
-      cmd += getApplicationInfo.dataDir + '/' + profile.route + ".acl"
+      cmd += Acl.getPath(profile.route)
     }
 
     if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
@@ -272,7 +272,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       , "-c", getApplicationInfo.dataDir + "/ss-tunnel-vpn.conf")
 
     cmd += "-L"
-    if (profile.route == Route.CHINALIST)
+    if (profile.route == Acl.CHINALIST)
       cmd += profile.china_dns.split(",")(0)
     else
       cmd += profile.dns.split(",")(0)
@@ -289,7 +289,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
     var china_dns_settings = ""
 
     val black_list = profile.route match {
-      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST => {
+      case Acl.BYPASS_CHN | Acl.BYPASS_LAN_CHN | Acl.GFWLIST | Acl.CUSTOM_RULES => {
         getBlackList
       }
       case _ => {
@@ -303,10 +303,10 @@ class ShadowsocksVpnService extends VpnService with BaseService {
     }
 
     val conf = profile.route match {
-      case Route.BYPASS_CHN | Route.BYPASS_LAN_CHN | Route.GFWLIST =>
+      case Acl.BYPASS_CHN | Acl.BYPASS_LAN_CHN | Acl.GFWLIST | Acl.CUSTOM_RULES =>
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, protect, getApplicationInfo.dataDir,
           "0.0.0.0", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
-      case Route.CHINALIST =>
+      case Acl.CHINALIST =>
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, protect, getApplicationInfo.dataDir,
           "0.0.0.0", profile.localPort + 53, china_dns_settings, profile.localPort + 63, reject)
       case _ =>
@@ -357,7 +357,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       }
     }
 
-    if (profile.route == Route.ALL || profile.route == Route.BYPASS_CHN) {
+    if (profile.route == Acl.ALL || profile.route == Acl.BYPASS_CHN) {
       builder.addRoute("0.0.0.0", 0)
     } else {
       val privateList = getResources.getStringArray(R.array.bypass_private_route)
