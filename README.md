@@ -34,6 +34,13 @@ A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
     sbt native-build clean android:package-release
 ```
 
+### TRANSLATE
+
+Translators can go to [POEditor](https://poeditor.com/join/project/u5VHO9vhSf) to help translate shadowsocks-android. Guidelines:
+
+* It's okay to leave some strings untranslated if you think it should use the same string as English (US).
+* `faq_url` should not be changed. If you'd like to translate FAQ, submit a pull request with the translated [`faq.md`](https://github.com/shadowsocks/shadowsocks-android/blob/master/.github/faq.md) (it should be named properly, e.g. `.github/faq.zh-CN.md`). Administrators will take care of the rest.
+
 ## OPEN SOURCE LICENSES
 
 <ul>
