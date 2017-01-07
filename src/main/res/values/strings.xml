@@ -32,11 +32,13 @@
   <string name="remote_port">Remote Port</string>
   <string name="port">Local Port</string>
   <string name="sitekey">Password</string>
+  <string name="enc_method">Encrypt Method</string>
+
+  <!-- proxy category for SSR -->
   <string name="protocol">Protocol</string>
   <string name="obfs">Obfs</string>
   <string name="obfs_param">Obfs Param</string>
   <string name="obfs_param_summary">Obfs param you input in your server</string>
-  <string name="enc_method">Encrypt Method</string>
 
   <!-- feature category -->
   <string name="feature_cat">Feature Settings</string>
@@ -44,13 +46,6 @@
   <string name="ipv6_summary">Redirect IPv6 traffic to remote</string>
   <string name="onetime_auth">One-time Authentication</string>
   <string name="onetime_auth_summary">Enable one-time authentication</string>
-  <string name="http_proxy">HTTP Proxy</string>
-  <string name="http_proxy_summary">Local HTTP Proxy</string>
-  <string name="dns_proxy">DNS Proxy</string>
-  <string name="dns_proxy_summary">Redirect DNS queries to remote</string>
-  <string name="auto_set_gfwlist">CHN Route</string>
-  <string name="auto_set_gfwlist_summary">Bypass all sites located in China
-  </string>
   <string name="route_list">Route</string>
   <string name="route_entry_all">All</string>
   <string name="route_entry_bypass_lan">Bypass LAN</string>
@@ -70,6 +65,8 @@
   <string name="tcp_fastopen_summary_unsupported">Unsupported kernel version: %s &lt; 3.7.1</string>
   <string name="udp_dns">UDP Forwarding</string>
   <string name="udp_dns_summary">Forward UDP packets to remote</string>
+
+  <!-- feature category for SSR -->
   <string name="dns">International DNS</string>
   <string name="dns_summary">Use to resolve outside the mainland of China\'s domains,e.g. 8.8.8.8:53</string>
   <string name="china_dns">China DNS</string>
