@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="shadowsocks"
+        android:text="Shadowsocks R"
         android:gravity="center"
         android:textSize="32sp"
         android:textColor="@android:color/white"/>
