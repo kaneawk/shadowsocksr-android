@@ -26,6 +26,7 @@ import android.app.Activity
 import android.content._
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.support.v7.widget._
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -321,7 +322,7 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
       }
       true
     case R.id.action_import =>
-      if (clipboard.hasPrimaryClip) {
+      try {
         val profiles_normal = Parser.findAll(clipboard.getPrimaryClip.getItemAt(0).getText).toList
 	val profiles_ssr = Parser.findAll_ssr(clipboard.getPrimaryClip.getItemAt(0).getText).toList
 	val profiles = profiles_normal ::: profiles_ssr
@@ -330,8 +331,10 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
           Toast.makeText(getActivity, R.string.action_import_msg, Toast.LENGTH_SHORT).show()
           return true
         }
+      } catch {
+        case _: Exception =>
       }
-      Toast.makeText(getActivity, R.string.action_import_err, Toast.LENGTH_SHORT).show()
+      Snackbar.make(getActivity.findViewById(R.id.snackbar), R.string.action_import_err, Snackbar.LENGTH_LONG).show()
       true
     case R.id.action_manual_settings =>
       startConfig(app.profileManager.createProfile().id)
