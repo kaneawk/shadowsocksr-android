@@ -35,7 +35,7 @@
   <string name="protocol">Protocol</string>
   <string name="obfs">Obfs</string>
   <string name="obfs_param">Obfs Param</string>
-  <string name="obfs_param_summary">Obfs param you input in panel</string>
+  <string name="obfs_param_summary">Obfs param you input in your server</string>
   <string name="enc_method">Encrypt Method</string>
 
   <!-- feature category -->

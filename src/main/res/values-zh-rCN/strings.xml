@@ -15,7 +15,7 @@
   <string name="protocol">协议</string>
   <string name="obfs">混淆方式</string>
   <string name="obfs_param">混淆参数</string>
-  <string name="obfs_param_summary">您的自定义混淆参数（SSR 特性）</string>
+  <string name="obfs_param_summary">您的自定义混淆参数（ShadowsocksR 特性）</string>
   <string name="enc_method">加密方法</string>
   <string name="feature_cat">功能设置</string>
   <string name="http_proxy">HTTP 代理服务器</string>
@@ -34,10 +34,6 @@
   <string name="auto_connect_summary">随系统启动后台服务</string>
   <string name="tcp_fastopen_summary">切换需要 ROOT 权限</string>
   <string name="tcp_fastopen_summary_unsupported">不支持的内核版本：%s &lt; 3.7.1</string>
-  <string name="dns">国外 DNS</string>
-  <string name="dns_summary">用于解析中国大陆以外域名的 DNS，如 8.8.8.8:53</string>
-  <string name="china_dns">国内 DNS</string>
-  <string name="china_dns_summary">用于解析中国大陆以内域名的 DNS，如 223.5.5.5:53</string>
   <string name="forward_success">后台服务已开始运行。</string>
   <string name="service_failed">无法连接远程服务器</string>
   <string name="invalid_server">服务器名无效</string>
@@ -75,6 +71,12 @@
 
   <string name="nat">NAT 模式 (仅限调试)</string>
   <string name="nat_summary">从 VPN 模式切换为 NAT 模式，需要 ROOT 权限</string>
+
+  <string name="dns">国外 DNS</string>
+  <string name="dns_summary">用于解析中国大陆以外域名的 DNS，如 8.8.8.8:53</string>
+
+  <string name="china_dns">国内 DNS</string>
+  <string name="china_dns_summary">用于解析中国大陆以内域名的 DNS，如 223.5.5.5:53</string>
 
   <string name="udp_dns">UDP 转发</string>
   <string name="udp_dns_summary">由远程服务器转发 UDP 协议的数据包</string>
