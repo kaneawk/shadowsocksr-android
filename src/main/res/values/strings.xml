@@ -36,6 +36,8 @@
 
   <!-- proxy category for SSR -->
   <string name="protocol">Protocol</string>
+  <string name="protocol_param">Protocol Param</string>
+  <string name="protocol_param_summary">Protocol param you input in your server</string>
   <string name="obfs">Obfs</string>
   <string name="obfs_param">Obfs Param</string>
   <string name="obfs_param_summary">Obfs param you input in your server</string>

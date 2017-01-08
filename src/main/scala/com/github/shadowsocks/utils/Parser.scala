@@ -34,6 +34,7 @@ object Parser {
   private val decodedPattern_ssr = "(?i)^((.+):(\\d+?):(.*):(.+):(.*):([^/]+))".r
   private val decodedPattern_ssr_obfsparam = "(?i)[?&]obfsparam=([A-Za-z0-9_=-]*)".r
   private val decodedPattern_ssr_remarks = "(?i)[?&]remarks=([A-Za-z0-9_=-]*)".r
+  private val decodedPattern_ssr_protocolparam = "(?i)[?&]protoparam=([A-Za-z0-9_=-]*)".r
 
   def findAll(data: CharSequence): Iterator[Profile] =
     pattern.findAllMatchIn(if (data == null) "" else data).map(m => try
@@ -70,6 +71,12 @@ object Parser {
           decodedPattern_ssr_obfsparam.findFirstMatchIn(uri) match {
             case Some(param) =>
               profile.obfs_param = new String(Base64.decode(param.group(1).replaceAll("=", ""), Base64.NO_PADDING | Base64.URL_SAFE), "UTF-8")
+            case _ => null
+          }
+
+          decodedPattern_ssr_protocolparam.findFirstMatchIn(uri) match {
+            case Some(param) =>
+              profile.protocol_param = new String(Base64.decode(param.group(1).replaceAll("=", ""), Base64.NO_PADDING | Base64.URL_SAFE), "UTF-8")
             case _ => null
           }
 

@@ -53,6 +53,9 @@ class Profile {
   var protocol: String = "origin"
 
   @DatabaseField
+  var protocol_param: String = ""
+
+  @DatabaseField
   var obfs: String = "plain"
 
   @DatabaseField
@@ -97,10 +100,11 @@ class Profile {
   @DatabaseField
   var userOrder: Long = _
 
-  override def toString = "ssr://" + Base64.encodeToString("%s:%d:%s:%s:%s:%s/?obfsparam=%s&remarks=%s".formatLocal(Locale.ENGLISH,
+  override def toString = "ssr://" + Base64.encodeToString("%s:%d:%s:%s:%s:%s/?obfsparam=%s&protoparam=%s&remarks=%s".formatLocal(Locale.ENGLISH,
     host, remotePort, protocol, method, obfs, Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
     password).getBytes, Base64.URL_SAFE | Base64.NO_WRAP), Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
     obfs_param).getBytes, Base64.URL_SAFE | Base64.NO_WRAP), Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
+    protocol_param).getBytes, Base64.URL_SAFE | Base64.NO_WRAP), Base64.encodeToString("%s".formatLocal(Locale.ENGLISH,
     name).getBytes, Base64.URL_SAFE | Base64.NO_WRAP)).getBytes, Base64.URL_SAFE | Base64.NO_WRAP)
 
   @DatabaseField
@@ -125,6 +129,7 @@ class Profile {
     .putInt(Key.remotePort, remotePort)
     .putString(Key.password, password)
     .putString(Key.protocol, protocol)
+    .putString(Key.protocol_param, protocol_param)
     .putString(Key.obfs, obfs)
     .putString(Key.obfs_param, obfs_param)
     .putString(Key.route, route)
@@ -148,6 +153,7 @@ class Profile {
     remotePort = pref.getInt(Key.remotePort, 0)
     password = pref.getString(Key.password, null)
     protocol = pref.getString(Key.protocol, null)
+    protocol_param = pref.getString(Key.protocol_param, null)
     obfs = pref.getString(Key.obfs, null)
     obfs_param = pref.getString(Key.obfs_param, null)
     method = pref.getString(Key.method, null)

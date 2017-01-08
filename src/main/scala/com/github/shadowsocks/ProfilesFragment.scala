@@ -303,9 +303,9 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
   override def onActivityResult(requestCode: Int, resultCode: Int, data: Intent): Unit = requestCode match {
     case REQUEST_SCAN_QR_CODE => if (resultCode == Activity.RESULT_OK) {
       val contents = data.getStringExtra("SCAN_RESULT")
-      if (!TextUtils.isEmpty(contents)) 
+      if (!TextUtils.isEmpty(contents))
         Parser.findAll(contents).foreach(app.profileManager.createProfile)
-	Parser.findAll_ssr(contents).foreach(app.profileManager.createProfile)
+        Parser.findAll_ssr(contents).foreach(app.profileManager.createProfile)
     }
     case _ => super.onActivityResult(resultCode, resultCode, data)
   }
@@ -324,8 +324,8 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
     case R.id.action_import =>
       try {
         val profiles_normal = Parser.findAll(clipboard.getPrimaryClip.getItemAt(0).getText).toList
-	val profiles_ssr = Parser.findAll_ssr(clipboard.getPrimaryClip.getItemAt(0).getText).toList
-	val profiles = profiles_normal ::: profiles_ssr
+        val profiles_ssr = Parser.findAll_ssr(clipboard.getPrimaryClip.getItemAt(0).getText).toList
+        val profiles = profiles_normal ::: profiles_ssr
         if (profiles.nonEmpty) {
           profiles.foreach(app.profileManager.createProfile)
           Toast.makeText(getActivity, R.string.action_import_msg, Toast.LENGTH_SHORT).show()

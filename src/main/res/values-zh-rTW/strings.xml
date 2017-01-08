@@ -30,6 +30,8 @@
 
 <!-- proxy category for SSR -->
 <string name="protocol">協定</string>
+<string name="protocol_param">協定參數</string>
+<string name="protocol_param_summary">您在伺服器裡輸入的協定參數（ShadowsocksR 特性）</string>
 <string name="obfs">obfs</string>
 <string name="obfs_param">obfs 參數</string>
 <string name="obfs_param_summary">您在伺服器裡輸入的 obfs 參數（ShadowsocksR 特性）</string>

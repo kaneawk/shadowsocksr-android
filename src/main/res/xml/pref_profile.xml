@@ -42,6 +42,10 @@
                 android:entryValues="@array/protocol_value"
                 android:summary="%s"
                 android:title="@string/protocol"/>
+        <be.mygod.preference.EditTextPreference
+                android:key="protocol_param"
+                android:summary="@string/protocol_param_summary"
+                android:title="@string/protocol_param"/>
         <DropDownPreference
                 android:key="obfs"
                 android:entries="@array/obfs_entry"

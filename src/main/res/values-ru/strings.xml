@@ -31,6 +31,8 @@
 
 <!-- proxy category for SSR -->
 <string name="protocol">Протокол</string>
+<string name="protocol_param">Настройки протокола</string>
+<string name="protocol_param_summary">Вы можете настроить параметры пересмотренного протокола панели ввода Волшебные(SSR характеристика)</string>
 <string name="obfs">Obfs</string>
 <string name="obfs_param">Obfs параметры</string>
 <string name="obfs_param_summary">Obfs param you input in your server</string>

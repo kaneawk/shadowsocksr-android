@@ -56,11 +56,11 @@ class ShadowsocksNatService extends BaseService {
     val conf = if (profile.kcp) {
       ConfigUtils
       .SHADOWSOCKS.formatLocal(Locale.ENGLISH, "127.0.0.1", profile.localPort + 90, profile.localPort,
-        profile.password, profile.method, 600, profile.protocol, profile.obfs, profile.obfs_param)
+        profile.password, profile.method, 600, profile.protocol, profile.obfs, profile.obfs_param, profile.protocol_param)
     } else {
       ConfigUtils
       .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort,
-        profile.password, profile.method, 600, profile.protocol, profile.obfs, profile.obfs_param)
+        profile.password, profile.method, 600, profile.protocol, profile.obfs, profile.obfs_param, profile.protocol_param)
     }
     Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-local-nat.conf"))(p => {
       p.println(conf)
@@ -135,11 +135,11 @@ class ShadowsocksNatService extends BaseService {
       val conf = if (profile.kcp) {
         ConfigUtils
         .SHADOWSOCKS.formatLocal(Locale.ENGLISH, "127.0.0.1", profile.localPort + 90,
-          profile.localPort + 63, profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param)
+          profile.localPort + 63, profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param, profile.protocol_param)
       } else {
         ConfigUtils
         .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 63,
-          profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param)
+          profile.password, profile.method, 10, profile.protocol, profile.obfs, profile.obfs_param, profile.protocol_param)
       }
       Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-tunnel-nat.conf"))(p => {
         p.println(conf)
