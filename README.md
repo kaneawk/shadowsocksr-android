@@ -2,8 +2,6 @@
 
 A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Android, written in Scala.
 
-[Help to translate shadowsocks at POEditor](https://poeditor.com/join/project/u5VHO9vhSf).
-
 ### CI STATUS
 
 [![Build Status](https://api.travis-ci.org/shadowsocks/shadowsocks-android.svg)](https://travis-ci.org/shadowsocks/shadowsocks-android)
