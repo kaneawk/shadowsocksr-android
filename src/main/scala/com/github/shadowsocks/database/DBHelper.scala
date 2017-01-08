@@ -46,7 +46,7 @@ object DBHelper {
 }
 
 class DBHelper(val context: Context)
-  extends OrmLiteSqliteOpenHelper(context, DBHelper.PROFILE, null, 21) {
+  extends OrmLiteSqliteOpenHelper(context, DBHelper.PROFILE, null, 23) {
   import DBHelper._
 
   lazy val profileDao: Dao[Profile, Int] = getDao(classOf[Profile])
@@ -129,23 +129,23 @@ class DBHelper(val context: Context)
         } else if (oldVersion < 19) {
           profileDao.executeRawNoArgs("UPDATE `profile` SET kcpPort = 8399 WHERE kcpPort = 0;")
         }
+
+        if (oldVersion < 21) {
+          profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN dns VARCHAR DEFAULT '8.8.8.8:53';")
+        }
+
+        if (oldVersion < 22) {
+          profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN china_dns VARCHAR DEFAULT '114.114.114.114:53,223.5.5.5:53';")
+        }
+
+        if (oldVersion < 23) {
+          profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN protocol_param VARCHAR DEFAULT '';")
+        }
       } catch {
         case ex: Exception =>
           app.track(ex)
           recreate(database, connectionSource)
           return
-      }
-
-      if (oldVersion < 19) {
-        profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN dns VARCHAR DEFAULT '8.8.8.8:53';")
-      }
-
-      if (oldVersion < 20) {
-        profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN china_dns VARCHAR DEFAULT '114.114.114.114:53,223.5.5.5:53';")
-      }
-
-      if (oldVersion < 21) {
-        profileDao.executeRawNoArgs("ALTER TABLE `profile` ADD COLUMN protocol_param VARCHAR DEFAULT '';")
       }
     }
   }
