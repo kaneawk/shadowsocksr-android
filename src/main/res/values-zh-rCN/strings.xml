@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name">"影梭"</string>
+<string name="app_name">"SSR"</string>
 <string name="quick_toggle">"开关"</string>
 
 <!-- global/misc category -->
@@ -98,7 +98,7 @@
 <string name="faq">"常见问题"</string>
 <string name="recovery">"重置"</string>
 <string name="about">"关于"</string>
-<string name="about_title">"影梭（shadowsocks）%s"</string>
+<string name="about_title">"影梭 (Shadowsocks R) %s"</string>
 <string name="edit">"编辑"</string>
 <string name="share">"分享"</string>
 <string name="flush_dnscache">"刷新 DNS 缓存"</string>
