@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-  <string name="app_name">SSR</string>
-  <string name="quick_toggle">切換</string>
+<string name="app_name">SSR</string>
+<string name="quick_toggle">"切換"</string>
 
 <!-- global/misc category -->
 <string name="misc_cat">"其他"</string>
@@ -114,64 +113,54 @@
 <string name="action_import_msg">"匯入成功"</string>
 <string name="action_import_err">"匯入失敗"</string>
 
-  <!-- profile -->
-  <string name="profile_config">設定檔配置</string>
-  <string name="unsaved_changes_prompt">要保存更改嗎？</string>
-  <string name="apply">應用</string>
-  <string name="delete">刪除</string>
-  <string name="delete_confirm_prompt">您確定要移除這個設定檔嗎？</string>
-  <string name="share_qr_nfc">QR 碼 / NFC</string>
-  <string name="add_profile_dialog">為 ShadowsocksR 新增此設定檔？</string>
-  <string name="add_profile_methods_scan_qr_code">掃描 QR 碼</string>
-  <string name="add_profile_methods_manual_settings">手動設定</string>
-  <string name="add_profile_scanner_not_installed">請安裝任何兼容 ZXing 的 QR 碼掃描應用程式。</string>
+<!-- profile -->
+<string name="profile_config">"設定檔設定"</string>
+<string name="unsaved_changes_prompt">"要儲存變更嗎？"</string>
+<string name="apply">"套用"</string>
+<string name="delete">"刪除"</string>
+<string name="delete_confirm_prompt">"您確定要移除這個設定檔嗎？"</string>
+<string name="share_qr_nfc">"QR 碼 / NFC"</string>
+<string name="add_profile_dialog">"為 Shadowsocks 新增此設定檔？"</string>
+<string name="add_profile_methods_scan_qr_code">"掃描 QR 碼"</string>
+<string name="add_profile_methods_manual_settings">"手動設定"</string>
+<string name="add_profile_scanner_not_installed">"請安裝任何相容 ZXing 的 QR 碼掃描應用程式。"</string>
+<plurals name="removed">
+<item quantity="other">"已移除"</item>
+</plurals>
+<string name="undo">"復原"</string>
 
-  <string name="route_entry_all">全部</string>
-  <string name="route_entry_bypass_lan">略過區域網路</string>
-  <string name="route_entry_bypass_chn">略過中國大陸</string>
-  <string name="route_entry_bypass_lan_chn">略過區域網路及中國大陸</string>
-  <string name="route_entry_gfwlist">GFW List</string>
-  <string name="route_entry_chinalist">China List</string>
+<!-- tasker -->
+<string name="toggle_service_state">"啟動服務"</string>
+<string name="start_service_default">"連線至目前的伺服器"</string>
+<string name="start_service">"連線至 %s"</string>
+<string name="stop_service">"切換至 %s"</string>
+<string name="profile_default">"使用目前的設定檔"</string>
 
-  <string name="action_apply_all">套用設定至所有設定檔</string>
-  <string name="action_export">匯出至剪貼簿</string>
-  <string name="action_import">從剪貼簿匯入</string>
-  <string name="action_export_msg">匯出至剪貼簿成功</string>
-  <string name="action_export_err">匯出至剪貼簿失敗</string>
-  <string name="action_import_msg">匯入成功</string>
-  <string name="action_import_err">匯入失敗</string>
+<!-- status -->
+<string name="sent">"傳送:"</string>
+<string name="received">"接收:"</string>
+<string name="connecting">"連線中…"</string>
+<string name="vpn_connected">"已連線，輕觸以檢查連線能力"</string>
+<string name="nat_connected">"已連線"</string>
+<string name="not_connected">"未連線"</string>
 
-  <plurals name="removed">
-    <item quantity="one">已移除</item>
-    <item quantity="other">已移除 %d 項</item>
-  </plurals>
-  <string name="undo">復原</string>
-  <string name="toggle_service_state">啟動服務</string>
-  <string name="start_service_default">連線至目前的伺服器</string>
-  <string name="start_service">連線至 %s</string>
-  <string name="stop_service">切換至 %s</string>
-  <string name="profile_default">使用目前的設定檔</string>
+<!-- kcp -->
+<string name="kcp_summary">"啟用 KCP 協定"</string>
+<string name="kcp_port">"KCP 連接埠"</string>
+<string name="kcp_port_summary">"%d（遠端 KCPTUN 伺服器的連接埠號碼）"</string>
+<string name="kcpcli">"KCP 參數 (CLI)"</string>
 
-  <!-- status -->
-  <string name="sent">傳送:</string>
-  <string name="received">接收:</string>
-  <string name="connecting">連線中…</string>
-  <string name="vpn_connected">已連線, 輕觸以檢查連線能力</string>
-  <string name="nat_connected">已連線</string>
-  <string name="not_connected">未連線</string>
-
-  <!-- kcp -->
-  <string name="kcp_summary">啟用 KCP 協定</string>
-  <string name="kcp_port">KCP 連接埠</string>
-  <string name="kcp_port_summary">%d（遠端 KCPTUN 伺服器的連接埠號碼）</string>
-  <string name="kcpcli">KCP 參數</string>
-
-  <!-- acl -->
-  <string name="custom_rules">自定義規則</string>
-  <string name="action_selection">選擇…</string>
-  <string name="action_add_rule">新增規則…</string>
-  <string name="acl_rule_templates_generic">子網路/主機名稱 PCRE 模式</string>
-  <string name="acl_rule_templates_domain">網域及其所有子網域</string>
-  <string name="edit_rule">編輯規則</string>
-
+<!-- acl -->
+<string name="custom_rules">"自訂規則"</string>
+<string name="action_selection">"選擇…"</string>
+<string name="action_add_rule">"新增規則…"</string>
+<string name="edit_rule">"編輯規則"</string>
+<string name="route_entry_all">"全部"</string>
+<string name="route_entry_bypass_lan">"略過區域網路"</string>
+<string name="route_entry_bypass_chn">"略過中國大陸"</string>
+<string name="route_entry_bypass_lan_chn">"略過區域網路及中國大陸"</string>
+<string name="route_entry_chinalist">"China List"</string>
+<string name="proxied_apps_summary_v21">"為已選擇的應用程式設定 Proxy"</string>
+<string name="acl_rule_templates_generic">"子網路/主機名稱 PCRE 模式"</string>
+<string name="acl_rule_templates_domain">"網域及其所有子網域"</string>
 </resources>
