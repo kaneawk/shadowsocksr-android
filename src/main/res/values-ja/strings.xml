@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">シャドーソックス</string>
-  <string name="quick_toggle">スイッチ</string>
+  <string name="app_name">Shadowsocks</string>
+  <string name="quick_toggle">ON/OFF</string>
 
   <string name="misc_cat">その他</string>
   <string name="proxy_cat">サーバー設定</string>
@@ -52,7 +52,7 @@
   <string name="remove_profile">このプロファイルを削除「%s」?</string>
   <string name="recovery">リセット</string>
   <string name="about">本アプリについて</string>
-  <string name="about_title">シャドーソックス（shadowsocks）%s</string>
+  <string name="about_title">Shadowsocks %s</string>
   <string name="flush_dnscache">DNS キャッシュをリフレッシュ</string>
   <string name="flush_dnscache_summary">NATモードの場合のみ使用、ROOT権限が必要です</string>
   <string name="flush_dnscache_no_root">ROOT権限がない場合はDNSキャッシュをリフレッシュできません</string>
@@ -110,7 +110,7 @@
     <item quantity="one">削除済み</item>
     <item quantity="other">%d を削除しました</item>
   </plurals>
-  <string name="undo">戻る</string>
+  <string name="undo">撤回</string>
   <string name="toggle_service_state">サービスを開始</string>
   <string name="start_service_default">現在のサーバーに接続する</string>
   <string name="start_service">%s に接続</string>
