@@ -10,7 +10,6 @@ A [Shadowsocks R](https://github.com/breakwa11/shadowsocks-rss/) client for Andr
 
 * JDK 1.8
 * SBT 0.13.0+
-* Go 1.4+
 * Android SDK
   - Build Tools 25+
   - Android Support Repository and Google Repository (see `build.sbt` for version)
@@ -52,7 +51,6 @@ Translators can go to [POEditor](https://poeditor.com/join/project/u5VHO9vhSf) t
     <li>shadowsocksr-obfsplugin: <a href="https://github.com/breakwa11/obfsplugin/blob/master/LICENSE">MIT</a></li>
     <li>pdnsd: <a href="https://github.com/shadowsocks/shadowsocks-android/blob/master/src/main/jni/pdnsd/COPYING">GPLv3</a></li>
     <li>libev: <a href="https://github.com/shadowsocks/shadowsocks-libev/blob/master/libev/LICENSE">GPLv2</a></li>
-    <li>kcptun: <a href="https://github.com/xtaci/kcptun/commits/master/LICENSE.md">MIT</a></li>
     <li>libsodium: <a href="https://github.com/jedisct1/libsodium/blob/master/LICENSE">ISC</a></li>
 </ul>
 
