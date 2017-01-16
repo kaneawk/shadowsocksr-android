@@ -30,10 +30,11 @@ import android.net.VpnService
 import android.os._
 import android.util.Log
 import com.github.shadowsocks.ShadowsocksApplication.app
-import com.github.shadowsocks.acl.{AclSyncJob, Acl}
+import com.github.shadowsocks.acl.{Acl, AclSyncJob}
 import com.github.shadowsocks.database.Profile
 import com.github.shadowsocks.utils._
 
+import scala.collection.JavaConversions._
 import scala.collection.mutable.ArrayBuffer
 
 class ShadowsocksVpnService extends VpnService with BaseService {
@@ -162,20 +163,11 @@ class ShadowsocksVpnService extends VpnService with BaseService {
   }
 
   def startShadowsocksDaemon() {
-    val conf =
-      ConfigUtils
-      .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort,
-        ConfigUtils.EscapedJson(profile.password), profile.method, 600, profile.protocol, profile.obfs, ConfigUtils.EscapedJson(profile.obfs_param), ConfigUtils.EscapedJson(profile.protocol_param))
-    Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-local-vpn.conf"))(p => {
-      p.println(conf)
-    })
-
     val cmd = ArrayBuffer[String](getApplicationInfo.nativeLibraryDir + "/libss-local.so", "-V"
       , "-b", "127.0.0.1"
       , "-t", "600"
       , "-P", getApplicationInfo.dataDir
-      , "-c", getApplicationInfo.dataDir + "/ss-local-vpn.conf")
-
+      , "-c", buildShadowsocksConfig(getApplicationInfo.dataDir + "/ss-local-vpn.conf"))
 
     if (profile.udpdns) cmd += "-u"
 
@@ -186,34 +178,19 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     if (TcpFastOpen.sendEnabled) cmd += "--fast-open"
 
-    if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
+    if (BuildConfig.DEBUG) Log.d(TAG, Commandline.toString(cmd))
 
     sslocalProcess = new GuardedProcess(cmd).start()
   }
 
   def startDnsTunnel() {
-    val conf =
-      ConfigUtils
-      .SHADOWSOCKS.formatLocal(Locale.ENGLISH, profile.host, profile.remotePort, profile.localPort + 63,
-        ConfigUtils.EscapedJson(profile.password), profile.method, 600, profile.protocol, profile.obfs, ConfigUtils.EscapedJson(profile.obfs_param), ConfigUtils.EscapedJson(profile.protocol_param))
-    Utils.printToFile(new File(getApplicationInfo.dataDir + "/ss-tunnel-vpn.conf"))(p => {
-      p.println(conf)
-    })
-    val cmd = ArrayBuffer[String](getApplicationInfo.nativeLibraryDir + "/libss-tunnel.so"
+    val cmd = Array[String](getApplicationInfo.nativeLibraryDir + "/libss-tunnel.so"
       , "-V"
       , "-t", "10"
       , "-b", "127.0.0.1"
       , "-P", getApplicationInfo.dataDir
-      , "-c", getApplicationInfo.dataDir + "/ss-tunnel-vpn.conf")
-
-    cmd += "-L"
-    if (profile.route == Acl.CHINALIST)
-      cmd += profile.china_dns.split(",")(0)
-    else
-      cmd += profile.dns.split(",")(0)
-
-    if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
-
+      , "-c", buildShadowsocksConfig(getApplicationInfo.dataDir + "/ss-tunnel-vpn.conf", 53))
+    if (BuildConfig.DEBUG) Log.d(TAG, Commandline.toString(cmd))
     sstunnelProcess = new GuardedProcess(cmd).start()
   }
 
@@ -253,7 +230,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
     })
     val cmd = Array(getApplicationInfo.nativeLibraryDir + "/libpdnsd.so", "-c", getApplicationInfo.dataDir + "/pdnsd-vpn.conf")
 
-    if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
+    if (BuildConfig.DEBUG) Log.d(TAG, Commandline.toString(cmd))
 
     pdnsdProcess = new GuardedProcess(cmd).start()
   }
@@ -327,7 +304,7 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       cmd += ("--dnsgw", "%s:%d".formatLocal(Locale.ENGLISH, PRIVATE_VLAN.formatLocal(Locale.ENGLISH, "1"),
         profile.localPort + 53))
 
-    if (BuildConfig.DEBUG) Log.d(TAG, cmd.mkString(" "))
+    if (BuildConfig.DEBUG) Log.d(TAG, Commandline.toString(cmd))
 
     tun2socksProcess = new GuardedProcess(cmd).start(() => sendFd(fd))
 
