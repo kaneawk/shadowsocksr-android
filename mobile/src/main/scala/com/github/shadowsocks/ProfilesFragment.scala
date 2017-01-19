@@ -53,7 +53,7 @@ final class ProfilesFragment extends ToolbarFragment with Toolbar.OnMenuItemClic
 
   private val cardButtonLongClickListener: OnLongClickListener = view => {
     Utils.positionToast(Toast.makeText(getActivity, view.getContentDescription, Toast.LENGTH_SHORT), view,
-      getActivity.getWindow, 0, Utils.dpToPx(getActivity, 8)).show()
+      getActivity.getWindow, 0, getResources.getDimensionPixelOffset(R.dimen.margin_small)).show()
     true
   }
 
