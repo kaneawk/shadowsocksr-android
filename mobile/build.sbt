@@ -7,12 +7,6 @@ versionCode := Some(174)
 applicationId := "net.htcp.shadowsocksr"
 
 proguardOptions ++=
-  "-keep class android.support.v14.preference.SwitchPreference { <init>(...); }" ::
-  "-keep class android.support.v7.preference.DropDownPreference { <init>(...); }" ::
-  "-keep class android.support.v7.preference.PreferenceScreen { <init>(...); }" ::
-  "-keep class be.mygod.preference.EditTextPreference { <init>(...); }" ::
-  "-keep class be.mygod.preference.NumberPickerPreference { <init>(...); }" ::
-  "-keep class be.mygod.preference.PreferenceCategory { <init>(...); }" ::
   "-keep class com.github.shadowsocks.System { *; }" ::
   "-dontwarn com.google.android.gms.internal.**" ::
   "-dontwarn com.j256.ormlite.**" ::
