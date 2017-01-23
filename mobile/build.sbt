@@ -4,6 +4,7 @@ android.useSupportVectors
 name := "shadowsocksr"
 version := "4.0.0"
 versionCode := Some(174)
+applicationId := "net.htcp.shadowsocksr"
 
 proguardOptions ++=
   "-keep class com.github.shadowsocks.System { *; }" ::
