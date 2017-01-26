@@ -1,6 +1,3 @@
-[submodule "src/main/jni/shadowsocks-libev"]
-  path = mobile/src/main/jni/shadowsocks-libev
-  url = https://github.com/kaneawk/shadowsocksr-libev.git
 [submodule "mobile/src/main/jni/badvpn"]
 	path = mobile/src/main/jni/badvpn
 	url = https://github.com/shadowsocks/badvpn.git
@@ -27,3 +24,6 @@
 [submodule "mobile/src/main/jni/pcre"]
 	path = mobile/src/main/jni/pcre
 	url = https://android.googlesource.com/platform/external/pcre
+[submodule "mobile/src/main/jni/shadowsocks-libev"]
+	path = mobile/src/main/jni/shadowsocks-libev
+	url = https://github.com/kaneawk/shadowsocksr-libev.git
