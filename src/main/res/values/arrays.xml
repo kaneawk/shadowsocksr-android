@@ -42,8 +42,6 @@
 
     <string-array name="protocol_entry">
         <item>origin</item>
-        <item>verify_simple</item>
-        <item>verify_sha1</item>
         <item>auth_sha1</item>
         <item>auth_sha1_v2</item>
         <item>auth_sha1_v4</item>
@@ -53,8 +51,6 @@
 
     <string-array name="protocol_value">
         <item>origin</item>
-        <item>verify_simple</item>
-        <item>verify_sha1</item>
         <item>auth_sha1</item>
         <item>auth_sha1_v2</item>
         <item>auth_sha1_v4</item>

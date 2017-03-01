@@ -42,7 +42,7 @@ object Parser {
         case Some(ss) =>
           val profile = new Profile
           profile.method = ss.group(2).toLowerCase
-          if (ss.group(3) != null) profile.protocol = "verify_sha1"
+          if (ss.group(3) != null) profile.protocol = "origin"
           profile.password = ss.group(4)
           profile.host = ss.group(5)
           profile.remotePort = ss.group(6).toInt
